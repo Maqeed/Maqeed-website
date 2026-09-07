@@ -129,6 +129,7 @@ section { padding: 96px 0; }
 }
 
 .site-header__mark { display: block; }
+.site-header__wordmark { display: block; width: auto; }
 
 .site-nav ul {
   display: flex;
@@ -451,6 +452,7 @@ section { padding: 96px 0; }
 }
 
 .site-footer__mark { display: block; }
+.site-footer__wordmark { display: block; width: auto; }
 
 .site-footer__columns {
   display: grid;

@@ -6,7 +6,7 @@
              alt="{{ shop.name }}" style="width:{{ settings.logo_width | divided_by: 1.4 }}px;height:auto;" loading="lazy">
       {%- else -%}
         <img src="{{ 'logo.png' | asset_url }}" alt="" class="site-footer__mark" width="26" height="24" loading="lazy">
-        <span>{{ settings.logo_text | default: shop.name }}</span>
+        <img src="{{ 'wordmark.png' | asset_url }}" alt="{{ settings.logo_text | default: shop.name }}" class="site-footer__wordmark" height="19" loading="lazy">
       {%- endif -%}
     </div>
 
