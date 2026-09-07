@@ -120,10 +120,15 @@ section { padding: 96px 0; }
 }
 
 .site-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.5rem;
   color: var(--color-heading);
   letter-spacing: 0.02em;
 }
+
+.site-header__mark { display: block; }
 
 .site-nav ul {
   display: flex;
@@ -436,7 +441,16 @@ section { padding: 96px 0; }
 .site-footer { padding-top: 96px; }
 .site-footer__inner { padding-bottom: 56px; }
 
-.site-footer__logo { font-size: 1.4rem; color: var(--color-heading); margin-bottom: 48px; }
+.site-footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.4rem;
+  color: var(--color-heading);
+  margin-bottom: 48px;
+}
+
+.site-footer__mark { display: block; }
 
 .site-footer__columns {
   display: grid;

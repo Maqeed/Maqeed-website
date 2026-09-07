@@ -6,7 +6,8 @@
              alt="{{ shop.name }}" width="{{ settings.logo_width }}"
              style="width:{{ settings.logo_width }}px;height:auto;" loading="eager">
       {%- else -%}
-        {{ settings.logo_text | default: shop.name }}
+        <img src="{{ 'logo.png' | asset_url }}" alt="" class="site-header__mark" width="30" height="28" loading="eager">
+        <span>{{ settings.logo_text | default: shop.name }}</span>
       {%- endif -%}
     </a>
 

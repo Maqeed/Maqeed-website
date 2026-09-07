@@ -1,6 +1,14 @@
 <footer class="site-footer">
   <div class="wrap site-footer__inner">
-    <div class="site-footer__logo font-heading">{{ settings.logo_text | default: shop.name }}</div>
+    <div class="site-footer__logo font-heading">
+      {%- if settings.logo_image -%}
+        <img src="{{ settings.logo_image | image_url: width: settings.logo_width | times: 2 }}"
+             alt="{{ shop.name }}" style="width:{{ settings.logo_width | divided_by: 1.4 }}px;height:auto;" loading="lazy">
+      {%- else -%}
+        <img src="{{ 'logo.png' | asset_url }}" alt="" class="site-footer__mark" width="26" height="24" loading="lazy">
+        <span>{{ settings.logo_text | default: shop.name }}</span>
+      {%- endif -%}
+    </div>
 
     <div class="site-footer__columns">
       {%- for block in section.blocks -%}
