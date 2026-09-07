@@ -1,0 +1,26 @@
+{%- comment -%}
+  Accepts: product, card_style ('open' shows an "open ↓" link style like the maqeed collection grid)
+{%- endcomment -%}
+<a href="{{ product.url }}" class="product-card">
+  <div class="product-card__image">
+    {%- if product.featured_image -%}
+      <img src="{{ product.featured_image | image_url: width: 600 }}"
+           alt="{{ product.featured_image.alt | escape }}"
+           width="300" height="400" loading="lazy">
+    {%- endif -%}
+  </div>
+  <h3 class="product-card__title font-heading">{{ product.title }}</h3>
+  <p class="product-card__subtitle">
+    {{ product.description | strip_html | truncate: 70 }}
+  </p>
+  <div class="product-card__meta">
+    <span class="product-card__price">
+      {%- if product.price_varies -%}
+        {{ 'products.product.regular_price' | t }} {{ product.price_min | money }}
+      {%- else -%}
+        {{ product.price | money }}
+      {%- endif -%}
+    </span>
+    <span class="product-card__open">open <span aria-hidden="true">&darr;</span></span>
+  </div>
+</a>

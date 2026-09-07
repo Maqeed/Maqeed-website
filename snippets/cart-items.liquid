@@ -1,0 +1,49 @@
+{%- comment -%}
+  Renders the cart contents. Used by both the cart drawer and the cart page.
+  Accepts: is_page (bool) - renders extra page-level chrome when true.
+{%- endcomment -%}
+
+{% form 'cart', cart, class: 'cart-form', data-cart-form: '' %}
+  {%- if cart.item_count == 0 -%}
+    <div class="cart-empty">
+      <p>{{ 'cart.general.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn-link">{{ 'cart.general.continue_shopping' | t }}</a>
+    </div>
+  {%- else -%}
+    <ul class="cart-items">
+      {%- for item in cart.items -%}
+        <li class="cart-item" data-cart-item data-line="{{ forloop.index }}">
+          <a href="{{ item.url }}" class="cart-item__image">
+            {%- if item.image -%}
+              <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.image.alt | escape }}" width="100" height="100" loading="lazy">
+            {%- endif -%}
+          </a>
+          <div class="cart-item__info">
+            <a href="{{ item.url }}" class="cart-item__title font-heading">{{ item.product.title }}</a>
+            {%- unless item.variant.title == 'Default Title' -%}
+              <p class="cart-item__variant">{{ item.variant.title }}</p>
+            {%- endunless -%}
+            <p class="cart-item__price">{{ item.final_price | money }}</p>
+            <div class="cart-item__qty">
+              <button type="button" class="qty-btn" data-qty-decrease aria-label="Decrease quantity">&minus;</button>
+              <input type="number" name="updates[]" value="{{ item.quantity }}" min="0"
+                     data-qty-input aria-label="Quantity" data-line="{{ forloop.index }}">
+              <button type="button" class="qty-btn" data-qty-increase aria-label="Increase quantity">&plus;</button>
+            </div>
+          </div>
+          <a href="{{ item.url_to_remove }}" class="cart-item__remove" data-cart-remove aria-label="{{ 'cart.general.remove' | t }}">
+            {% render 'icon-close' %}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <div class="cart-summary">
+      <div class="cart-summary__row">
+        <span>{{ 'cart.general.subtotal' | t }}</span>
+        <span>{{ cart.total_price | money }}</span>
+      </div>
+      <button type="submit" name="checkout" class="btn-primary cart-checkout">{{ 'cart.general.checkout' | t }}</button>
+    </div>
+  {%- endif -%}
+{% endform %}

@@ -1,0 +1,63 @@
+<section class="story" id="story">
+  <div class="wrap story__inner">
+    <div class="story__main">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <blockquote class="story__quote font-heading">{{ section.settings.quote }}</blockquote>
+      <div class="story__body">{{ section.settings.body }}</div>
+    </div>
+  </div>
+
+  {%- if section.settings.show_collection_intro -%}
+    <div class="wrap collection-intro">
+      <h2 class="font-heading">{{ section.settings.collection_heading }}</h2>
+      <p>{{ section.settings.collection_text }}</p>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Story + quote",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "on making scent"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Pull quote",
+      "default": "<p>We don't chase a top note. We wait for the one that settles.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body text",
+      "default": "<p>Most fragrance is built to be smelled from across a room. Maqeed is built to be found — by the person wearing it, on a wrist, hours later, when the loud notes have already gone quiet and what's left is the true one. Everything we pour is meant to be discovered slowly, the way you'd notice a smell caught in an old coat.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_intro",
+      "label": "Show collection intro below",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "collection_heading",
+      "label": "Collection intro heading",
+      "default": "The collection"
+    },
+    {
+      "type": "text",
+      "id": "collection_text",
+      "label": "Collection intro text",
+      "default": "Four bottles, four states of warmth. Tap one open to read what's underneath."
+    }
+  ],
+  "presets": [
+    { "name": "Story + quote" }
+  ]
+}
+{% endschema %}

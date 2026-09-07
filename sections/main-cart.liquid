@@ -1,0 +1,13 @@
+<section class="cart-page">
+  <div class="wrap">
+    <h1 class="font-heading">{{ 'cart.general.title' | t }}</h1>
+    {% render 'cart-items' %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": []
+}
+{% endschema %}

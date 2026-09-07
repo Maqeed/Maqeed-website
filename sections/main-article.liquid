@@ -1,0 +1,31 @@
+<section class="article">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">{{ article.published_at | date: '%B %d, %Y' }}</p>
+    <h1 class="font-heading">{{ article.title }}</h1>
+    {%- if article.image -%}
+      <div class="article__image">
+        <img src="{{ article.image | image_url: width: 1200 }}" alt="{{ article.image.alt | escape }}" width="800" height="500">
+      </div>
+    {%- endif -%}
+    <div class="article__content rte">{{ article.content }}</div>
+
+    {%- if blog.comments_enabled? -%}
+      <div class="article__comments">
+        {{ article.comments_count }} comments
+        {% form 'new_comment', article %}
+          {%- if form.posted_successfully? -%}
+            <p>Comment posted.</p>
+          {%- endif -%}
+          <input type="text" name="comment[author]" placeholder="Name" required>
+          <input type="email" name="comment[email]" placeholder="Email" required>
+          <textarea name="comment[body]" placeholder="Comment" required></textarea>
+          <button type="submit">Post comment</button>
+        {% endform %}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

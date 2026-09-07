@@ -1,0 +1,83 @@
+<section class="how-to-wear" id="ritual">
+  <div class="wrap">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="font-heading">{{ section.settings.heading }}</h2>
+
+    <div class="steps">
+      {%- for block in section.blocks -%}
+        <div class="step" {{ block.shopify_attributes }}>
+          <span class="step__number">{{ block.settings.number }}</span>
+          <h3 class="step__title font-heading">{{ block.settings.title }}</h3>
+          <div class="step__text">{{ block.settings.text }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How to wear it",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "how to wear it"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Scent settles in three stages. Give it the time."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Warm the wrist first" },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>One press to the inside of the wrist, then rub it gently against the other. This isn't about spreading — it's about warming the oil enough to open.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to wear it",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Warm the wrist first",
+            "text": "<p>One press to the inside of the wrist, then rub it gently against the other. This isn't about spreading — it's about warming the oil enough to open.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Let the first ten minutes pass",
+            "text": "<p>What you smell right away isn't the fragrance — it's the alcohol carrying it. Wait for that to lift before deciding what you think.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Return to it at night",
+            "text": "<p>The true note in every maqeed scent shows up hours later, closer to the skin. That's the one we built the bottle around.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,62 @@
+<header class="site-header" data-site-header>
+  <div class="wrap site-header__inner">
+    <a href="{{ routes.root_url }}" class="site-header__logo font-heading">
+      {%- if settings.logo_image -%}
+        <img src="{{ settings.logo_image | image_url: width: settings.logo_width | times: 2 }}"
+             alt="{{ shop.name }}" width="{{ settings.logo_width }}"
+             style="width:{{ settings.logo_width }}px;height:auto;" loading="eager">
+      {%- else -%}
+        {{ settings.logo_text | default: shop.name }}
+      {%- endif -%}
+    </a>
+
+    <nav class="site-nav" aria-label="Main menu">
+      <ul>
+        {%- for link in section.settings.menu.links -%}
+          <li>
+            <a href="{{ link.url }}"{% if link.active %} class="is-active"{% endif %}>{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a href="{{ routes.search_url }}" class="icon-link" aria-label="Search">
+        {% render 'icon-search' %}
+      </a>
+      <a href="{{ routes.account_url }}" class="icon-link" aria-label="Account">
+        {% render 'icon-account' %}
+      </a>
+      <a href="{{ routes.cart_url }}" class="icon-link cart-icon-link" aria-label="Cart"
+         {% if settings.cart_type == 'drawer' %}data-cart-drawer-open{% endif %}>
+        {% render 'icon-bag' %}
+        <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+      <button class="nav-toggle" data-nav-toggle aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" data-mobile-nav>
+    <ul>
+      {%- for link in section.settings.menu.links -%}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

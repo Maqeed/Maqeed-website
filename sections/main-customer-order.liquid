@@ -1,0 +1,29 @@
+<section class="account-page">
+  <div class="wrap">
+    <h1 class="font-heading">{{ 'customer.order.title' | t: name: order.name }}</h1>
+    <p>{{ order.created_at | date: '%B %d, %Y' }}</p>
+
+    <table class="order-table">
+      <thead>
+        <tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr>
+      </thead>
+      <tbody>
+        {%- for line_item in order.line_items -%}
+          <tr>
+            <td>{{ line_item.title }}</td>
+            <td>{{ line_item.price | money }}</td>
+            <td>{{ line_item.quantity }}</td>
+            <td>{{ line_item.final_line_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+
+    <p class="order-total">{{ 'cart.general.subtotal' | t }}: {{ order.total_price | money }}</p>
+    <a href="{{ routes.account_url }}" class="btn-link">Back to account</a>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Customer order", "settings": [] }
+{% endschema %}

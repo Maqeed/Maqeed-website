@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_background }}">
+  <title>
+    {{ page_title }}{% if page_title contains shop.name %}{% else %} &middot; {{ shop.name }}{% endif %}
+  </title>
+  {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% if settings.favicon %}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32 }}">
+  {% endif %}
+
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  {%- style -%}
+    :root {
+      --color-bg: {{ settings.color_background }};
+      --color-heading: {{ settings.color_heading }};
+      --color-body: {{ settings.color_body }};
+      --color-accent: {{ settings.color_accent }};
+      --color-line: {{ settings.color_line }};
+      --color-dark: {{ settings.color_dark }};
+      --color-dark-text: {{ settings.color_dark_text }};
+    }
+    {{ settings.font_heading | font_face: font_display: 'swap' }}
+    {{ settings.font_body | font_face: font_display: 'swap' }}
+    body {
+      font-family: {{ settings.font_body.family }}, sans-serif;
+      font-weight: {{ settings.font_body.weight }};
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: {{ settings.font_heading.family }}, serif;
+      font-weight: {{ settings.font_heading.weight }};
+    }
+  {%- endstyle -%}
+
+  {{ content_for_header }}
+</head>
+<body>
+  <a class="skip-link" href="#MainContent">Skip to content</a>
+
+  {% section 'header' %}
+
+  <main id="MainContent">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  {% if settings.cart_type == 'drawer' %}
+    {% section 'cart-drawer' %}
+  {% endif %}
+
+  {{ 'theme.js' | asset_url | script_tag }}
+</body>
+</html>

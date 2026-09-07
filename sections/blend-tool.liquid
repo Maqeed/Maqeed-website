@@ -1,0 +1,92 @@
+<section class="blend-tool" id="blend">
+  <div class="wrap">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="font-heading">{{ section.settings.heading }}</h2>
+    <div class="blend-tool__intro">{{ section.settings.text }}</div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="blend-card" data-blend-tool>
+        {%- if section.blocks.size > 1 -%}
+          <div class="blend-card__tabs" role="tablist">
+            {%- for block in section.blocks -%}
+              <button type="button" class="blend-tab{% if forloop.first %} is-active{% endif %}"
+                      data-blend-tab="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+                {{ block.settings.scent_one }} &amp; {{ block.settings.scent_two }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- for block in section.blocks -%}
+          <div class="blend-pane{% if forloop.first %} is-active{% endif %}" data-blend-pane="{{ forloop.index0 }}">
+            <div class="blend-visual" data-blend-visual></div>
+            <div class="blend-labels">
+              <span class="blend-label blend-label--one">{{ block.settings.scent_one }}</span>
+              <span class="blend-label blend-label--two">{{ block.settings.scent_two }}</span>
+            </div>
+            <input type="range" class="blend-slider" min="0" max="100" value="50"
+                   data-blend-slider aria-label="Blend between {{ block.settings.scent_one }} and {{ block.settings.scent_two }}">
+            <p class="blend-result font-heading" data-blend-result>{{ block.settings.result_text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blend your own",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "an experiment"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Blend your own"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text",
+      "default": "<p>Every maqeed scent can be worn alone or layered. Slide between two of them to see roughly where they'd meet — the real blend takes longer to find, but this is where most people start.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pair",
+      "name": "Scent pair",
+      "settings": [
+        { "type": "text", "id": "scent_one", "label": "Scent one", "default": "Ember Ground" },
+        { "type": "text", "id": "scent_two", "label": "Scent two", "default": "Still Moss" },
+        {
+          "type": "text",
+          "id": "result_text",
+          "label": "Result description",
+          "default": "An even hold — resin and wet stone, neither one leading."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blend your own",
+      "blocks": [
+        {
+          "type": "pair",
+          "settings": {
+            "scent_one": "Ember Ground",
+            "scent_two": "Still Moss",
+            "result_text": "An even hold — resin and wet stone, neither one leading."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

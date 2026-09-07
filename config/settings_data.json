@@ -1,0 +1,32 @@
+{
+  "current": {
+    "color_background": "#FAF7F1",
+    "color_heading": "#6B6151",
+    "color_body": "#8C7F6A",
+    "color_accent": "#D98A4E",
+    "color_line": "#E7E0D3",
+    "color_dark": "#100F0C",
+    "color_dark_text": "#D8CCB4",
+    "font_heading": "lora_n4",
+    "font_body": "jost_n4",
+    "logo_text": "maqeed",
+    "logo_width": 140,
+    "cart_type": "drawer"
+  },
+  "presets": {
+    "Default": {
+      "color_background": "#FAF7F1",
+      "color_heading": "#6B6151",
+      "color_body": "#8C7F6A",
+      "color_accent": "#D98A4E",
+      "color_line": "#E7E0D3",
+      "color_dark": "#100F0C",
+      "color_dark_text": "#D8CCB4",
+      "font_heading": "lora_n4",
+      "font_body": "jost_n4",
+      "logo_text": "maqeed",
+      "logo_width": 140,
+      "cart_type": "drawer"
+    }
+  }
+}

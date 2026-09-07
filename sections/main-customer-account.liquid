@@ -1,0 +1,30 @@
+<section class="account-page">
+  <div class="wrap">
+    <div class="account-header">
+      <h1 class="font-heading">{{ 'customer.account.title' | t }}</h1>
+      <a href="{{ routes.account_logout_url }}" class="btn-link">{{ 'customer.account.logout' | t }}</a>
+    </div>
+
+    <h2 class="font-heading">{{ 'customer.account.orders' | t }}</h2>
+    {%- if customer.orders.size > 0 -%}
+      <ul class="order-list">
+        {%- for order in customer.orders -%}
+          <li>
+            <a href="{{ order.customer_url }}">
+              <span>{{ order.name }}</span>
+              <span>{{ order.created_at | date: '%B %d, %Y' }}</span>
+              <span>{{ order.total_price | money }}</span>
+              <span>{{ order.fulfillment_status_label }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+      <p>{{ 'customer.account.no_orders' | t }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Customer account", "settings": [] }
+{% endschema %}

@@ -1,0 +1,15 @@
+<section class="account-page">
+  <div class="wrap">
+    <h1 class="font-heading">Addresses</h1>
+    <ul class="address-list">
+      {%- for address in customer.addresses -%}
+        <li>{{ address | format_address }}</li>
+      {%- endfor -%}
+    </ul>
+    <a href="{{ routes.account_url }}" class="btn-link">Back to account</a>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Customer addresses", "settings": [] }
+{% endschema %}

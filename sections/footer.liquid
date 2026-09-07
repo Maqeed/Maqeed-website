@@ -1,0 +1,104 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__logo font-heading">{{ settings.logo_text | default: shop.name }}</div>
+
+    <div class="site-footer__columns">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'column' -%}
+          <div class="footer-col" {{ block.shopify_attributes }}>
+            <p class="footer-col__title">{{ block.settings.title }}</p>
+            <ul>
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div class="footer-col">
+        <p class="footer-col__title">find us</p>
+        <ul>
+          {%- if settings.social_instagram != blank -%}
+            <li><a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">instagram</a></li>
+          {%- endif -%}
+          {%- if settings.social_tiktok != blank -%}
+            <li><a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener">tiktok</a></li>
+          {%- endif -%}
+          {%- if settings.social_facebook != blank -%}
+            <li><a href="{{ settings.social_facebook }}" target="_blank" rel="noopener">facebook</a></li>
+          {%- endif -%}
+          {%- if settings.social_twitter != blank -%}
+            <li><a href="{{ settings.social_twitter }}" target="_blank" rel="noopener">twitter</a></li>
+          {%- endif -%}
+          <li><a href="{{ pages.contact.url | default: '/pages/contact' }}">contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.bottom_left }}</p>
+      <p>{{ section.settings.bottom_right }}</p>
+    </div>
+  </div>
+
+  {%- if section.settings.banner_image -%}
+    <div class="site-footer__banner" style="background-image:url({{ section.settings.banner_image | image_url: width: 2000 }});">
+      {%- if section.settings.banner_text != blank -%}
+        <p class="font-heading">{{ section.settings.banner_text }}</p>
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <div class="site-footer__banner site-footer__banner--plain">
+      {%- if section.settings.banner_text != blank -%}
+        <p class="font-heading">{{ section.settings.banner_text }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bottom_left",
+      "label": "Bottom left text",
+      "default": "All scents poured slow."
+    },
+    {
+      "type": "text",
+      "id": "bottom_right",
+      "label": "Bottom right text",
+      "default": "held, not chased."
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image (optional)"
+    },
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner text (optional)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Menu column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "column", "settings": { "title": "shop" } },
+      { "type": "column", "settings": { "title": "house" } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+<section class="hero" {% if section.settings.image %}style="background-image:url({{ section.settings.image | image_url: width: 2400 }});"{% endif %}>
+  <div class="wrap hero__inner">
+    <p class="hero__text">
+      {{ section.settings.text }}
+    </p>
+    <a href="#{{ section.settings.scroll_to | default: 'story' }}" class="hero__scroll">scroll</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Hero text",
+      "default": "<p>The name means <em>held</em> — a scent that keeps its shape on skin instead of announcing itself and leaving. Four fragrances, blurred from any single note, poured slow.</p>"
+    },
+    {
+      "type": "text",
+      "id": "scroll_to",
+      "label": "Scroll-to anchor id",
+      "default": "story"
+    }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ 'Gift card' }} &middot; {{ shop.name }}</title>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <style>
+    :root {
+      --color-bg: {{ settings.color_background }};
+      --color-heading: {{ settings.color_heading }};
+      --color-body: {{ settings.color_body }};
+      --color-accent: {{ settings.color_accent }};
+      --color-line: {{ settings.color_line }};
+    }
+  </style>
+</head>
+<body class="gift-card-page">
+  <div class="wrap wrap--narrow gift-card">
+    <p class="eyebrow">gift card</p>
+    <h1 class="font-heading">{{ shop.name }}</h1>
+    <p class="gift-card__amount">{{ gift_card.initial_value | money }}</p>
+
+    {%- if gift_card.enabled and gift_card.expired == false -%}
+      <p class="gift-card__code">{{ gift_card.code | format_code }}</p>
+      {%- if gift_card.pass_url -%}
+        <a href="{{ gift_card.pass_url }}"><img src="https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png" alt="Add to Google Pay" width="120"></a>
+      {%- endif -%}
+      <p>{{ 'Balance:' }} {{ gift_card.balance | money }}</p>
+    {%- else -%}
+      <p>This gift card has expired.</p>
+    {%- endif -%}
+
+    <a href="{{ routes.root_url }}" class="btn-link">Continue shopping</a>
+  </div>
+</body>
+</html>
