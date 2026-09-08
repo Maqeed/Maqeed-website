@@ -1,0 +1,28 @@
+<section class="philosophy-contact" id="contact">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="font-heading">{{ section.settings.heading }}</h2>
+    <div class="philosophy-contact__text rte">{{ section.settings.text }}</div>
+    {%- if section.settings.email != blank -%}
+      <a href="mailto:{{ section.settings.email }}" class="btn-link">{{ section.settings.email }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Philosophy contact",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "contact" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions before you wear it." },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Write to us directly — we read every message.</p>"
+    },
+    { "type": "text", "id": "email", "label": "Contact email", "default": "hello@maqeed.com" }
+  ],
+  "presets": [{ "name": "Philosophy contact" }]
+}
+{% endschema %}

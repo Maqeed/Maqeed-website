@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "nav": {
+      "type": "philosophy-nav",
+      "blocks": {
+        "philosophy": { "type": "link", "settings": { "label": "Philosophy", "url": "#philosophy" } },
+        "ritual": { "type": "link", "settings": { "label": "The ritual", "url": "#ritual" } },
+        "notes": { "type": "link", "settings": { "label": "Notes", "url": "#notes" } },
+        "contact": { "type": "link", "settings": { "label": "Contact", "url": "#contact" } }
+      },
+      "block_order": ["philosophy", "ritual", "notes", "contact"]
+    },
+    "intro": {
+      "type": "philosophy-intro",
+      "settings": {}
+    },
+    "ritual": {
+      "type": "philosophy-ritual",
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "numeral": "i.",
+            "title": "Warm the point",
+            "text": "<p>Wrists, the base of the throat, behind the ear — anywhere skin runs close to the surface.</p>"
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "numeral": "ii.",
+            "title": "Press, don't rub",
+            "text": "<p>Friction breaks the top notes early. Let the oil settle into skin on its own.</p>"
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "numeral": "iii.",
+            "title": "Give it a minute",
+            "text": "<p>The alcohol lifts first. What's left after is the scent that actually stays.</p>"
+          }
+        }
+      },
+      "block_order": ["step-1", "step-2", "step-3"]
+    },
+    "notes": {
+      "type": "philosophy-notes",
+      "blocks": {
+        "top": { "type": "layer", "settings": { "title": "Top", "items": "Black pepper\nBitter bergamot\nPink cardamom" } },
+        "heart": { "type": "layer", "settings": { "title": "Heart", "items": "Aged oud\nSaffron leather\nDried rose" } },
+        "base": { "type": "layer", "settings": { "title": "Base", "items": "Dark amber\nSandalwood\nWarm skin musk" } }
+      },
+      "block_order": ["top", "heart", "base"]
+    },
+    "contact": {
+      "type": "philosophy-contact",
+      "settings": {}
+    }
+  },
+  "order": ["nav", "intro", "ritual", "notes", "contact"]
+}

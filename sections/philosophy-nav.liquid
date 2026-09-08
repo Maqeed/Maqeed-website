@@ -1,0 +1,36 @@
+<nav class="subnav" aria-label="On this page">
+  <div class="wrap subnav__inner">
+    <ul>
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}><a href="{{ block.settings.url }}">{{ block.settings.label }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Section nav",
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Philosophy" },
+        { "type": "text", "id": "url", "label": "Link (anchor or URL)", "default": "#philosophy" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section nav",
+      "blocks": [
+        { "type": "link", "settings": { "label": "Philosophy", "url": "#philosophy" } },
+        { "type": "link", "settings": { "label": "The ritual", "url": "#ritual" } },
+        { "type": "link", "settings": { "label": "Notes", "url": "#notes" } },
+        { "type": "link", "settings": { "label": "Contact", "url": "#contact" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -37,6 +37,24 @@ Zip the contents of this repo (not the repo folder itself — `layout/`,
 `sections/`, etc. should be at the zip root) and upload it under
 **Online Store → Themes → Add theme → Upload zip** in your Shopify admin.
 
+## The Philosophy page
+
+A second, standalone page — "Made for what the light doesn't reach" — lives
+at `templates/page.philosophy.json`. It reuses the theme's palette and type
+but has its own sections: an in-page jump nav (Philosophy / The ritual /
+Notes / Contact), a philosophy intro, a three-step "ritual" (warm the point,
+press don't rub, give it a minute), a three-column notes breakdown (top /
+heart / base), and a contact block.
+
+- `sections/philosophy-nav.liquid`, `philosophy-intro.liquid`,
+  `philosophy-ritual.liquid`, `philosophy-notes.liquid`,
+  `philosophy-contact.liquid` — the new sections, each with editable
+  settings/blocks in the theme editor.
+- After pushing the theme, create a Page in **Online Store → Pages**,
+  set its template to **page.philosophy**, and publish it. (This repo's
+  automation also creates that page directly in the connected store — see
+  below.)
+
 ## After installing
 
 1. **Add products.** Create four products (e.g. Ember Ground, Dust Rose,

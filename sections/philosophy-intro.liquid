@@ -1,0 +1,27 @@
+<section class="philosophy-hero" id="philosophy">
+  <div class="wrap wrap--narrow">
+    <h1 class="font-heading philosophy-hero__heading">{{ section.settings.heading | newline_to_br }}</h1>
+    <div class="philosophy-hero__body rte">{{ section.settings.body }}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Philosophy intro",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Made for what\nthe light doesn't reach."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Maqeed is worn, not sprayed into a room. The formulas sit dense and low — resin, wood, and skin musk built to read at pulse distance rather than across it.</p><p>Nothing here is loud. Each bottle is finished in smoked glass and left unlabeled beyond its name, so the scent is what announces you, not the packaging.</p>"
+    }
+  ],
+  "presets": [{ "name": "Philosophy intro" }]
+}
+{% endschema %}
