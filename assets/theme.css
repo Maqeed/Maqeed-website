@@ -150,12 +150,18 @@ section { padding: 128px 0; }
 }
 
 .site-header__logo {
-  display: inline-block;
-  font-size: clamp(1.15rem, 3.2vw, 1.5rem);
-  line-height: 1;
-  color: var(--color-heading);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-header__wordmark {
+  display: block;
+  height: 20px;
+  width: auto;
+}
+
+@media (max-width: 400px) {
+  .site-header__wordmark { height: 17px; }
 }
 
 .site-nav ul {
