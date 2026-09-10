@@ -1,6 +1,13 @@
 <footer class="site-footer">
-  <div class="wrap site-footer__top" data-reveal>
-    <p class="site-footer__wordmark font-heading">{{ settings.logo_text | default: shop.name }}</p>
+  <div class="wrap site-footer__top" data-reveal style="--footer-logo-width: {{ section.settings.logo_width }}px;">
+    <img
+      src="{{ 'footer-wordmark.png' | asset_url }}"
+      alt="{{ settings.logo_text | default: shop.name }}"
+      class="site-footer__logo-img"
+      width="1200"
+      height="276"
+      loading="lazy"
+    >
     {%- if section.settings.statement != blank -%}
       <p class="site-footer__statement">{{ section.settings.statement }}</p>
     {%- endif -%}
@@ -52,6 +59,16 @@
     {
       "type": "header",
       "content": "Brand"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 120,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "default": 200
     },
     {
       "type": "text",
