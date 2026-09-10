@@ -1,9 +1,15 @@
 <section class="hero" {% if section.settings.image %}style="background-image:url({{ section.settings.image | image_url: width: 2400 }});"{% endif %}>
   <div class="wrap hero__inner">
-    <p class="hero__text">
-      {{ section.settings.text }}
-    </p>
-    <a href="#{{ section.settings.scroll_to | default: 'story' }}" class="hero__scroll">scroll</a>
+    {%- if section.settings.show_wordmark -%}
+      <img src="{{ 'wordmark.png' | asset_url }}" alt="{{ shop.name }}" class="hero__wordmark" loading="eager">
+    {%- endif -%}
+
+    <div class="hero__bottom">
+      <p class="hero__text">
+        {{ section.settings.text }}
+      </p>
+      <a href="#{{ section.settings.scroll_to | default: 'story' }}" class="hero__scroll">scroll</a>
+    </div>
   </div>
 </section>
 
@@ -15,6 +21,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "Background image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wordmark",
+      "label": "Show wordmark",
+      "default": true
     },
     {
       "type": "richtext",
