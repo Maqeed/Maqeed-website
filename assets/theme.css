@@ -138,8 +138,9 @@ section { padding: 128px 0; }
 .site-header {
   position: relative;
   z-index: 40;
-  background: var(--color-bg);
+  background: var(--color-dark);
 }
+.site-header .icon-link { color: var(--color-dark-text); }
 
 .site-header__inner {
   display: flex;
@@ -173,13 +174,14 @@ section { padding: 128px 0; }
 }
 
 .site-nav a {
-  color: var(--color-body);
+  color: var(--color-dark-text);
+  opacity: 0.75;
   font-size: 0.95rem;
   letter-spacing: 0.01em;
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 .site-nav a:hover,
-.site-nav a.is-active { color: var(--color-accent); }
+.site-nav a.is-active { opacity: 1; }
 
 .site-header__actions {
   display: flex;
@@ -215,16 +217,16 @@ section { padding: 128px 0; }
 .nav-toggle span {
   width: 20px;
   height: 1px;
-  background: var(--color-heading);
+  background: var(--color-dark-text);
 }
 
 .mobile-nav {
   display: none;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid rgba(233, 218, 213, 0.14);
   padding: 20px 32px 28px;
 }
 .mobile-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
-.mobile-nav a { font-size: 1.05rem; color: var(--color-heading); }
+.mobile-nav a { font-size: 1.05rem; color: var(--color-dark-text); }
 .mobile-nav.is-open { display: block; }
 
 @media (max-width: 860px) {
