@@ -1,68 +1,73 @@
 <footer class="site-footer">
-  <div class="wrap site-footer__inner">
-    <div class="site-footer__logo font-heading">
-      {%- if settings.logo_image -%}
-        <img src="{{ settings.logo_image | image_url: width: settings.logo_width | times: 2 }}"
-             alt="{{ shop.name }}" style="width:{{ settings.logo_width | divided_by: 1.4 }}px;height:auto;" loading="lazy">
-      {%- else -%}
-        <img src="{{ 'logo.png' | asset_url }}" alt="" class="site-footer__mark" width="26" height="24" loading="lazy">
-        <img src="{{ 'wordmark.png' | asset_url }}" alt="{{ settings.logo_text | default: shop.name }}" class="site-footer__wordmark" height="19" loading="lazy">
-      {%- endif -%}
-    </div>
+  <div class="wrap site-footer__top" data-reveal>
+    <p class="site-footer__wordmark font-heading">{{ settings.logo_text | default: shop.name }}</p>
+    {%- if section.settings.statement != blank -%}
+      <p class="site-footer__statement">{{ section.settings.statement }}</p>
+    {%- endif -%}
+  </div>
 
-    <div class="site-footer__columns">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'column' -%}
-          <div class="footer-col" {{ block.shopify_attributes }}>
-            <p class="footer-col__title">{{ block.settings.title }}</p>
-            <ul>
-              {%- for link in block.settings.menu.links -%}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {%- endfor -%}
-            </ul>
-          </div>
+  <div class="wrap site-footer__nav" data-reveal>
+    <div class="footer-col">
+      <p class="footer-col__title">{{ section.settings.shop_title }}</p>
+      <ul>
+        {%- if section.settings.shop_link_label != blank -%}
+          <li><a href="{{ section.settings.shop_link_url | default: '#' }}">{{ section.settings.shop_link_label }}</a></li>
         {%- endif -%}
-      {%- endfor -%}
-
-      <div class="footer-col">
-        <p class="footer-col__title">find us</p>
-        <ul>
-          {%- if settings.social_instagram != blank -%}
-            <li><a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">instagram</a></li>
-          {%- endif -%}
-          {%- if settings.social_tiktok != blank -%}
-            <li><a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener">tiktok</a></li>
-          {%- endif -%}
-          {%- if settings.social_facebook != blank -%}
-            <li><a href="{{ settings.social_facebook }}" target="_blank" rel="noopener">facebook</a></li>
-          {%- endif -%}
-          {%- if settings.social_twitter != blank -%}
-            <li><a href="{{ settings.social_twitter }}" target="_blank" rel="noopener">twitter</a></li>
-          {%- endif -%}
-          <li><a href="{{ pages.contact.url | default: '/pages/contact' }}">contact</a></li>
-        </ul>
-      </div>
+      </ul>
     </div>
-
-    <div class="site-footer__bottom">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.bottom_left }}</p>
-      <p>{{ section.settings.bottom_right }}</p>
+    <div class="footer-col">
+      <p class="footer-col__title">{{ section.settings.brand_title }}</p>
+      <ul>
+        {%- if section.settings.brand_link_1_label != blank -%}
+          <li><a href="{{ section.settings.brand_link_1_url | default: '#' }}">{{ section.settings.brand_link_1_label }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.brand_link_2_label != blank -%}
+          <li><a href="{{ section.settings.brand_link_2_url | default: '#' }}">{{ section.settings.brand_link_2_label }}</a></li>
+        {%- endif -%}
+      </ul>
     </div>
   </div>
 
-  {%- if section.settings.banner_image -%}
-    <div class="site-footer__banner" style="background-image:url({{ section.settings.banner_image | image_url: width: 2000 }});">
-      {%- if section.settings.banner_text != blank -%}
-        <p class="font-heading">{{ section.settings.banner_text }}</p>
+  <div class="wrap site-footer__newsletter" data-reveal>
+    <h2 class="font-heading">{{ section.settings.newsletter_heading }}</h2>
+    {%- if section.settings.newsletter_description != blank -%}
+      <p class="site-footer__newsletter-description">{{ section.settings.newsletter_description }}</p>
+    {%- endif -%}
+
+    {% form 'customer', class: 'site-footer__newsletter-form' %}
+      {%- if form.posted_successfully? -%}
+        <p class="site-footer__newsletter-success">{{ 'general.newsletter.success' | t }}</p>
+      {%- else -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="site-footer__newsletter-field">
+          <label for="FooterNewsletterEmail" class="visually-hidden">Email</label>
+          <input type="email" name="contact[email]" id="FooterNewsletterEmail" placeholder="your email" required>
+          <button type="submit" aria-label="Subscribe">
+            {% render 'icon-arrow' %}
+          </button>
+        </div>
+        {%- if form.errors -%}
+          <p class="site-footer__newsletter-error">{{ form.errors.messages['contact[email]'] }}</p>
+        {%- endif -%}
       {%- endif -%}
-    </div>
-  {%- else -%}
-    <div class="site-footer__banner site-footer__banner--plain">
-      {%- if section.settings.banner_text != blank -%}
-        <p class="font-heading">{{ section.settings.banner_text }}</p>
+    {% endform %}
+  </div>
+
+  {%- if settings.social_instagram != blank or settings.social_tiktok != blank -%}
+    <div class="wrap site-footer__social" data-reveal>
+      {%- if settings.social_instagram != blank -%}
+        <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram</a>
+      {%- endif -%}
+      {%- if settings.social_tiktok != blank -%}
+        <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener">TikTok</a>
       {%- endif -%}
     </div>
   {%- endif -%}
+
+  <div class="wrap site-footer__bottom">
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+    <p>{{ section.settings.bottom_right }}</p>
+  </div>
 </footer>
 
 {% schema %}
@@ -70,43 +75,97 @@
   "name": "Footer",
   "settings": [
     {
+      "type": "header",
+      "content": "Brand"
+    },
+    {
       "type": "text",
-      "id": "bottom_left",
-      "label": "Bottom left text",
-      "default": "All scents poured slow."
+      "id": "statement",
+      "label": "Brand statement",
+      "default": "Fragrance, shaped by memory."
+    },
+    {
+      "type": "header",
+      "content": "Shop column"
+    },
+    {
+      "type": "text",
+      "id": "shop_title",
+      "label": "Column title",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "shop_link_label",
+      "label": "Link label",
+      "default": "All Fragrances"
+    },
+    {
+      "type": "url",
+      "id": "shop_link_url",
+      "label": "Link URL",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Maqeed column"
+    },
+    {
+      "type": "text",
+      "id": "brand_title",
+      "label": "Column title",
+      "default": "Maqeed"
+    },
+    {
+      "type": "text",
+      "id": "brand_link_1_label",
+      "label": "Link 1 label",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "brand_link_1_url",
+      "label": "Link 1 URL",
+      "default": "/pages/our-story"
+    },
+    {
+      "type": "text",
+      "id": "brand_link_2_label",
+      "label": "Link 2 label",
+      "default": "Contact"
+    },
+    {
+      "type": "url",
+      "id": "brand_link_2_url",
+      "label": "Link 2 URL",
+      "default": "/pages/contact"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Heading",
+      "default": "Stay close to Maqeed."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_description",
+      "label": "Description",
+      "default": "New fragrances, stories and private releases."
+    },
+    {
+      "type": "header",
+      "content": "Bottom bar"
     },
     {
       "type": "text",
       "id": "bottom_right",
       "label": "Bottom right text",
-      "default": "held, not chased."
-    },
-    {
-      "type": "image_picker",
-      "id": "banner_image",
-      "label": "Banner image (optional)"
-    },
-    {
-      "type": "text",
-      "id": "banner_text",
-      "label": "Banner text (optional)"
+      "default": "UAE · English"
     }
-  ],
-  "blocks": [
-    {
-      "type": "column",
-      "name": "Menu column",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "shop" },
-        { "type": "link_list", "id": "menu", "label": "Menu" }
-      ]
-    }
-  ],
-  "default": {
-    "blocks": [
-      { "type": "column", "settings": { "title": "shop" } },
-      { "type": "column", "settings": { "title": "house" } }
-    ]
-  }
+  ]
 }
 {% endschema %}
