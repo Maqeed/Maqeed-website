@@ -355,8 +355,14 @@ section { padding: 128px 0; }
    Featured fragrances
    ========================================================================== */
 
+.featured-fragrances {
+  background: var(--featured-bg, #2B1419);
+}
+.featured-fragrances .eyebrow { color: var(--color-dark-text); opacity: 0.75; }
+.featured-fragrances h2 { color: var(--color-dark-text); }
+
 .featured-fragrances__head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
-.featured-fragrances__description { color: var(--color-body); margin-top: 0.6em; }
+.featured-fragrances__description { color: var(--color-dark-text); opacity: 0.85; margin-top: 0.6em; }
 
 .featured-grid {
   display: grid;
@@ -385,18 +391,20 @@ section { padding: 128px 0; }
 .featured-card:hover .featured-card__image img { transform: scale(1.045); }
 
 .featured-card__type {
-  color: var(--color-accent);
+  color: var(--color-dark-text);
+  opacity: 0.7;
   text-transform: lowercase;
   letter-spacing: 0.06em;
   font-size: 0.8rem;
   margin: 0 0 0.5em;
 }
-.featured-card__title { margin-bottom: 0.3em; }
-.featured-card__price { color: var(--color-body); margin: 0; }
+.featured-card__title { color: var(--color-dark-text); margin-bottom: 0.3em; }
+.featured-card__price { color: var(--color-dark-text); opacity: 0.85; margin: 0; }
 
 .featured-card--empty .featured-card__image {
-  border: 1px dashed var(--color-line);
+  border: 1px dashed var(--color-dark-text);
   background: none;
+  opacity: 0.35;
 }
 .featured-card--empty .featured-card__title,
 .featured-card--empty .featured-card__type { opacity: 0.5; }

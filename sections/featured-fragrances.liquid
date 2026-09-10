@@ -4,7 +4,7 @@
   everything shown — image, title, type, price, url — comes from
   live product data.
 {%- endcomment -%}
-<section class="featured-fragrances">
+<section class="featured-fragrances" style="--featured-bg: {{ section.settings.background_color }};">
   <div class="wrap">
     <div class="featured-fragrances__head" data-reveal>
       {%- if section.settings.eyebrow != blank -%}
@@ -54,6 +54,13 @@
 {
   "name": "Featured fragrances",
   "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "info": "Defaults to a rosewood tone that echoes the footer while staying distinct from it.",
+      "default": "#2B1419"
+    },
     {
       "type": "text",
       "id": "eyebrow",
