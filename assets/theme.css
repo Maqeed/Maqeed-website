@@ -763,8 +763,8 @@ section { padding: 128px 0; }
 }
 
 .site-footer__logo-img {
-  width: var(--footer-logo-width, 200px);
-  max-width: 70%;
+  width: var(--footer-logo-width, 160px);
+  max-width: 60%;
   height: auto;
   margin: 0 auto 0.9em;
 }
@@ -826,7 +826,7 @@ section { padding: 128px 0; }
 @media (max-width: 700px) {
   .site-footer { padding-top: 76px; }
   .site-footer__top { padding-bottom: 60px; }
-  .site-footer__logo-img { width: calc(var(--footer-logo-width, 200px) * 0.72); max-width: 64%; }
+  .site-footer__logo-img { width: calc(var(--footer-logo-width, 160px) * 0.78); max-width: 58%; }
   .site-footer__nav { flex-direction: column; align-items: center; gap: 40px; padding-bottom: 60px; }
   .site-footer__social { padding-bottom: 52px; gap: 22px; }
   .site-footer__bottom { flex-direction: column; gap: 8px; text-align: center; padding-bottom: 40px; }
