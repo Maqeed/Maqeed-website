@@ -150,16 +150,13 @@ section { padding: 128px 0; }
 }
 
 .site-header__logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.5rem;
+  display: inline-block;
+  font-size: clamp(1.15rem, 3.2vw, 1.5rem);
+  line-height: 1;
   color: var(--color-heading);
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
-
-.site-header__mark { display: block; }
-.site-header__wordmark { display: block; width: auto; }
 
 .site-nav ul {
   display: flex;
