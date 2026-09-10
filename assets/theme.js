@@ -244,4 +244,29 @@
   /* ---------------------------------------------------------------------
      Newsletter form — no-JS fallback works natively; nothing to bind.
   --------------------------------------------------------------------- */
+
+  /* ---------------------------------------------------------------------
+     Scroll reveal — subtle fade/slide-up for [data-reveal] elements.
+     Progressive enhancement: theme.css only hides these once <html>
+     carries the "js" class (set synchronously in <head>), so content
+     stays fully visible if this script fails to run or IntersectionObserver
+     is unsupported.
+  --------------------------------------------------------------------- */
+  var revealTargets = document.querySelectorAll('[data-reveal]');
+  if (revealTargets.length) {
+    if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+      revealTargets.forEach(function (el) { revealObserver.observe(el); });
+    } else {
+      revealTargets.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  }
 })();

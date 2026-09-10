@@ -14,43 +14,43 @@
         "type": "color",
         "id": "color_background",
         "label": "Background",
-        "default": "#FAF7F1"
+        "default": "#F8F3EF"
       },
       {
         "type": "color",
         "id": "color_heading",
         "label": "Headings",
-        "default": "#6B6151"
+        "default": "#3E161C"
       },
       {
         "type": "color",
         "id": "color_body",
         "label": "Body text",
-        "default": "#8C7F6A"
+        "default": "#6E5254"
       },
       {
         "type": "color",
         "id": "color_accent",
         "label": "Accent (labels, links)",
-        "default": "#D98A4E"
+        "default": "#8C2F3B"
       },
       {
         "type": "color",
         "id": "color_line",
         "label": "Hairlines",
-        "default": "#E7E0D3"
+        "default": "#E6D9D6"
       },
       {
         "type": "color",
         "id": "color_dark",
         "label": "Dark panels",
-        "default": "#100F0C"
+        "default": "#241014"
       },
       {
         "type": "color",
         "id": "color_dark_text",
         "label": "Text on dark panels",
-        "default": "#D8CCB4"
+        "default": "#E9DAD5"
       }
     ]
   },

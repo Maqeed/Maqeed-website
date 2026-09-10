@@ -1,6 +1,6 @@
 <section class="story" id="story">
   <div class="wrap story__inner">
-    <div class="story__main">
+    <div class="story__main" data-reveal>
       <p class="eyebrow">{{ section.settings.eyebrow }}</p>
       <blockquote class="story__quote font-heading">{{ section.settings.quote }}</blockquote>
       <div class="story__body">{{ section.settings.body }}</div>
@@ -8,7 +8,7 @@
   </div>
 
   {%- if section.settings.show_collection_intro -%}
-    <div class="wrap collection-intro">
+    <div class="wrap collection-intro" data-reveal>
       <h2 class="font-heading">{{ section.settings.collection_heading }}</h2>
       <p>{{ section.settings.collection_text }}</p>
     </div>

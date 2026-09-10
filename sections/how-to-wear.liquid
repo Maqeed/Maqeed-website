@@ -5,7 +5,7 @@
 
     <div class="steps">
       {%- for block in section.blocks -%}
-        <div class="step" {{ block.shopify_attributes }}>
+        <div class="step" data-reveal {{ block.shopify_attributes }}>
           <span class="step__number">{{ block.settings.number }}</span>
           <h3 class="step__title font-heading">{{ block.settings.title }}</h3>
           <div class="step__text">{{ block.settings.text }}</div>

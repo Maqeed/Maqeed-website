@@ -18,12 +18,12 @@ body {
 h1, h2, h3, h4 {
   color: var(--color-heading);
   margin: 0 0 0.5em;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: 0.01em;
 }
 
-h1 { font-size: clamp(2rem, 4vw, 3rem); }
-h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); }
+h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.75rem, 3.4vw, 2.5rem); letter-spacing: -0.005em; }
 h3 { font-size: 1.25rem; }
 
 p { margin: 0 0 1em; }
@@ -99,7 +99,37 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   position: relative;
 }
 
-section { padding: 96px 0; }
+section { padding: 128px 0; }
+
+@media (max-width: 700px) {
+  section { padding: 76px 0; }
+  .wrap { padding: 0 20px; }
+}
+
+/* ==========================================================================
+   Scroll reveal — progressive enhancement only.
+   Elements stay fully visible unless JS adds .js to <html> AND an
+   IntersectionObserver later adds .is-visible, so nothing breaks
+   with JS disabled or before the observer attaches.
+   ========================================================================== */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* ==========================================================================
    Header
@@ -204,10 +234,14 @@ section { padding: 96px 0; }
    ========================================================================== */
 
 .hero {
-  min-height: 82vh;
+  min-height: 92vh;
   display: flex;
   background-size: cover;
   background-position: center;
+}
+
+@media (max-width: 700px) {
+  .hero { min-height: 88vh; }
 }
 
 .hero__inner {
@@ -286,24 +320,30 @@ section { padding: 96px 0; }
 .collection-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 56px 40px;
+  gap: 64px 48px;
 }
 
 @media (max-width: 700px) {
-  .collection-grid { grid-template-columns: 1fr; }
+  .collection-grid { grid-template-columns: 1fr; gap: 48px; }
 }
 
 .product-card { display: block; }
 
 .product-card__image {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0));
-  border: 1px solid var(--color-line);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   overflow: hidden;
 }
-.product-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.product-card:hover .product-card__image img { transform: scale(1.03); }
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.product-card:hover .product-card__image img { transform: scale(1.045); }
+
+.product-card--placeholder .product-card__image { border: 1px dashed var(--color-line); }
 
 .product-card__title { margin-bottom: 0.3em; }
 .product-card__subtitle { max-width: 320px; }
@@ -329,6 +369,10 @@ section { padding: 96px 0; }
   border: 1px solid var(--color-line);
   padding: 48px;
   margin-top: 48px;
+}
+
+@media (max-width: 560px) {
+  .blend-card { padding: 28px 20px; }
 }
 
 .blend-card__tabs {
@@ -597,20 +641,26 @@ section { padding: 96px 0; }
 
 .product__inner {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 64px;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 80px;
 }
 
 .product__image {
-  border: 1px solid var(--color-line);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
+  background: var(--color-line);
 }
-.product__image img { width: 100%; height: 100%; object-fit: cover; }
+.product__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
 .product__thumbs { display: flex; gap: 12px; margin-top: 16px; }
-.product__thumb { border: 1px solid var(--color-line); overflow: hidden; padding: 0; }
-.product__thumb.is-active { border-color: var(--color-accent); }
+.product__thumb { border: 1px solid var(--color-line); overflow: hidden; padding: 0; opacity: 0.6; transition: opacity 0.25s ease; }
+.product__thumb:hover { opacity: 1; }
+.product__thumb.is-active { border-color: var(--color-accent); opacity: 1; }
 
 .product__price { font-size: 1.15rem; color: var(--color-heading); margin-bottom: 1.4em; }
 
@@ -638,7 +688,7 @@ section { padding: 96px 0; }
 .product-note__label { color: var(--color-accent); text-transform: lowercase; }
 
 @media (max-width: 800px) {
-  .product__inner { grid-template-columns: 1fr; }
+  .product__inner { grid-template-columns: 1fr; gap: 40px; }
 }
 
 /* ==========================================================================

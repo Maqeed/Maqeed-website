@@ -1,7 +1,7 @@
 {%- comment -%}
   Accepts: product, card_style ('open' shows an "open ↓" link style like the maqeed collection grid)
 {%- endcomment -%}
-<a href="{{ product.url }}" class="product-card">
+<a href="{{ product.url }}" class="product-card" data-reveal>
   <div class="product-card__image">
     {%- if product.featured_image -%}
       <img src="{{ product.featured_image | image_url: width: 600 }}"

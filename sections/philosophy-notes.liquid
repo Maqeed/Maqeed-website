@@ -5,7 +5,7 @@
 
     <div class="notes-columns">
       {%- for block in section.blocks -%}
-        <div class="notes-col" {{ block.shopify_attributes }}>
+        <div class="notes-col" data-reveal {{ block.shopify_attributes }}>
           <p class="notes-col__title font-heading">{{ block.settings.title }}</p>
           <ul class="notes-col__list">
             {%- assign items = block.settings.items | split: "\n" -%}
