@@ -28,31 +28,6 @@
     </div>
   </div>
 
-  <div class="wrap site-footer__newsletter" data-reveal>
-    <h2 class="font-heading">{{ section.settings.newsletter_heading }}</h2>
-    {%- if section.settings.newsletter_description != blank -%}
-      <p class="site-footer__newsletter-description">{{ section.settings.newsletter_description }}</p>
-    {%- endif -%}
-
-    {% form 'customer', class: 'site-footer__newsletter-form' %}
-      {%- if form.posted_successfully? -%}
-        <p class="site-footer__newsletter-success">{{ 'general.newsletter.success' | t }}</p>
-      {%- else -%}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <div class="site-footer__newsletter-field">
-          <label for="FooterNewsletterEmail" class="visually-hidden">Email</label>
-          <input type="email" name="contact[email]" id="FooterNewsletterEmail" placeholder="your email" required>
-          <button type="submit" aria-label="Subscribe">
-            {% render 'icon-arrow' %}
-          </button>
-        </div>
-        {%- if form.errors -%}
-          <p class="site-footer__newsletter-error">{{ form.errors.messages['contact[email]'] }}</p>
-        {%- endif -%}
-      {%- endif -%}
-    {% endform %}
-  </div>
-
   {%- if settings.social_instagram != blank or settings.social_tiktok != blank -%}
     <div class="wrap site-footer__social" data-reveal>
       {%- if settings.social_instagram != blank -%}
@@ -139,22 +114,6 @@
       "id": "brand_link_2_url",
       "label": "Link 2 URL",
       "info": "Defaults to /pages/contact if left blank."
-    },
-    {
-      "type": "header",
-      "content": "Newsletter"
-    },
-    {
-      "type": "text",
-      "id": "newsletter_heading",
-      "label": "Heading",
-      "default": "Stay close to Maqeed."
-    },
-    {
-      "type": "text",
-      "id": "newsletter_description",
-      "label": "Description",
-      "default": "New fragrances, stories and private releases."
     },
     {
       "type": "header",
