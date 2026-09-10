@@ -1,14 +1,55 @@
-<section class="hero" {% if section.settings.image %}style="background-image:url({{ section.settings.image | image_url: width: 2400 }});"{% endif %}>
-  <div class="wrap hero__inner">
-    {%- if section.settings.show_wordmark -%}
-      <img src="{{ 'wordmark.png' | asset_url }}" alt="{{ shop.name }}" class="hero__wordmark" loading="eager">
-    {%- endif -%}
+{%- comment -%}
+  Cinematic homepage hero. Supports an optional native Shopify video
+  (falls back to the desktop image as a poster and background), a
+  separate mobile image, adjustable overlay, height, and text position.
+{%- endcomment -%}
+{%- assign has_video = false -%}
+{%- if section.settings.video != blank -%}
+  {%- assign has_video = true -%}
+{%- endif -%}
+{%- assign has_media = false -%}
+{%- if section.settings.image != blank or has_video -%}
+  {%- assign has_media = true -%}
+{%- endif -%}
 
-    <div class="hero__bottom">
-      <p class="hero__text">
-        {{ section.settings.text }}
-      </p>
-      <a href="#{{ section.settings.scroll_to | default: 'story' }}" class="hero__scroll">scroll</a>
+<section
+  class="hero hero--{{ section.settings.height }} hero--{{ section.settings.text_position }} {% if has_media %}hero--media{% else %}hero--no-media{% endif %}"
+  {% if section.settings.image %}
+    style="--hero-bg-desktop: url('{{ section.settings.image | image_url: width: 2400 }}');{% if section.settings.image_mobile %} --hero-bg-mobile: url('{{ section.settings.image_mobile | image_url: width: 1200 }}');{% endif %}"
+  {% endif %}
+>
+  {%- if has_video -%}
+    <div class="hero__video-wrap">
+      {%- if section.settings.image -%}
+        {{ section.settings.video | video_tag: image_size: '1920x', poster: section.settings.image, autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero__video' }}
+      {%- else -%}
+        {{ section.settings.video | video_tag: image_size: '1920x', autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero__video' }}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.overlay_opacity > 0 -%}
+    <div class="hero__overlay" style="opacity: {{ section.settings.overlay_opacity | times: 1.0 | divided_by: 100 }};"></div>
+  {%- endif -%}
+
+  <div class="wrap hero__inner">
+    <div class="hero__content" data-reveal>
+      {%- if section.settings.heading != blank -%}
+        <h1 class="hero__heading font-heading">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <div class="hero__description">{{ section.settings.description }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank or section.settings.button_label_secondary != blank -%}
+        <div class="hero__actions">
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="btn-primary">{{ section.settings.button_label }}</a>
+          {%- endif -%}
+          {%- if section.settings.button_label_secondary != blank -%}
+            <a href="{{ section.settings.button_link_secondary | default: '#' }}" class="btn-link hero__secondary">{{ section.settings.button_label_secondary }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -18,27 +59,100 @@
   "name": "Hero",
   "settings": [
     {
+      "type": "header",
+      "content": "Media"
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Background image"
+      "label": "Desktop image",
+      "info": "Also used as the video poster and on mobile if no mobile image is set."
     },
     {
-      "type": "checkbox",
-      "id": "show_wordmark",
-      "label": "Show wordmark",
-      "default": true
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image"
     },
     {
-      "type": "richtext",
-      "id": "text",
-      "label": "Hero text",
-      "default": "<p>The name means <em>held</em> — a scent that keeps its shape on skin instead of announcing itself and leaving. Four fragrances, blurred from any single note, poured slow.</p>"
+      "type": "video",
+      "id": "video",
+      "label": "Desktop video (optional)",
+      "info": "Plays muted and looped in place of the desktop image where supported."
+    },
+    {
+      "type": "header",
+      "content": "Content"
     },
     {
       "type": "text",
-      "id": "scroll_to",
-      "label": "Scroll-to anchor id",
-      "default": "story"
+      "id": "heading",
+      "label": "Heading",
+      "default": "A scent is a memory, carried forward."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Maqeed is a study in restraint — fragrance built to be discovered close, not announced from across a room.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Primary button label",
+      "default": "Explore the Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_secondary",
+      "label": "Secondary button label (optional)"
+    },
+    {
+      "type": "url",
+      "id": "button_link_secondary",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "options": [
+        { "value": "bottom-left", "label": "Bottom left" },
+        { "value": "bottom-center", "label": "Bottom center" },
+        { "value": "center", "label": "Center" },
+        { "value": "top-left", "label": "Top left" }
+      ],
+      "default": "bottom-left"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Section height",
+      "options": [
+        { "value": "height-small", "label": "Small" },
+        { "value": "height-medium", "label": "Medium" },
+        { "value": "height-large", "label": "Large" },
+        { "value": "height-full", "label": "Full screen" }
+      ],
+      "default": "height-large"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay darkness",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 25
     }
   ],
   "presets": [

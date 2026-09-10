@@ -1,6 +1,9 @@
 <section class="newsletter">
-  <div class="wrap">
+  <div class="wrap" data-reveal>
     <h2 class="font-heading">{{ section.settings.heading }}</h2>
+    {%- if section.settings.description != blank -%}
+      <p class="newsletter-description">{{ section.settings.description }}</p>
+    {%- endif -%}
 
     {% form 'customer', class: 'newsletter-form' %}
       {%- if form.posted_successfully? -%}
@@ -28,13 +31,19 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Come back to something that stays."
+      "default": "Stay close to Maqeed."
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover new fragrances, stories and private releases."
     },
     {
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "notify me"
+      "default": "Subscribe"
     }
   ],
   "presets": [

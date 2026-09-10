@@ -1,0 +1,101 @@
+{%- comment -%}
+  Editorial image + text section. "Split" lays the image and text side
+  by side (image_position controls which side); "Overlay" runs the
+  image full-bleed with the text set over a scrim, like the hero.
+{%- endcomment -%}
+<section class="editorial-story editorial-story--{{ section.settings.layout }} editorial-story--image-{{ section.settings.image_position }}">
+  {%- if section.settings.layout == 'overlay' -%}
+    <div class="editorial-story__media editorial-story__media--full"
+         {% if section.settings.image %}style="background-image:url('{{ section.settings.image | image_url: width: 2000 }}');"{% endif %}>
+      {%- if section.settings.overlay_opacity > 0 -%}
+        <div class="editorial-story__overlay" style="opacity: {{ section.settings.overlay_opacity | times: 1.0 | divided_by: 100 }};"></div>
+      {%- endif -%}
+      <div class="wrap wrap--narrow editorial-story__content editorial-story__content--overlay" data-reveal>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="font-heading">{{ section.settings.heading }}</h2>
+        <div class="editorial-story__body">{{ section.settings.body }}</div>
+      </div>
+    </div>
+  {%- else -%}
+    <div class="editorial-story__media">
+      {%- if section.settings.image -%}
+        <img src="{{ section.settings.image | image_url: width: 1600 }}"
+             alt="{{ section.settings.image.alt | escape }}"
+             width="800" height="1000" loading="lazy">
+      {%- endif -%}
+    </div>
+    <div class="editorial-story__content" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="font-heading">{{ section.settings.heading }}</h2>
+      <div class="editorial-story__body">{{ section.settings.body }}</div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Editorial story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "split", "label": "Image beside text" },
+        { "value": "overlay", "label": "Text over image" }
+      ],
+      "default": "split"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (split layout)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay darkness (overlay layout)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 35
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "the philosophy"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Art of the Trace"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>A fragrance is never just a scent. It carries the trace of what made it — a resin, a coastline, an afternoon you didn't know you'd remember. We build ours to hold that trace, not mask it.</p>"
+    }
+  ],
+  "presets": [
+    { "name": "Editorial story" }
+  ]
+}
+{% endschema %}

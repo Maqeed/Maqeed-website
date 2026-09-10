@@ -42,6 +42,12 @@
       },
       {
         "type": "color",
+        "id": "color_bg_soft",
+        "label": "Soft panel background",
+        "default": "#F1E7DF"
+      },
+      {
+        "type": "color",
         "id": "color_dark",
         "label": "Dark panels",
         "default": "#241014"

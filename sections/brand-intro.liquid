@@ -1,0 +1,48 @@
+{%- comment -%}
+  Minimal, centered brand introduction. Sits directly under the hero.
+{%- endcomment -%}
+<section class="brand-intro">
+  <div class="wrap wrap--narrow brand-intro__inner" data-reveal>
+    <h2 class="brand-intro__statement font-heading">{{ section.settings.statement }}</h2>
+    {%- if section.settings.description != blank -%}
+      <div class="brand-intro__description">{{ section.settings.description }}</div>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank -%}
+      <a href="{{ section.settings.cta_link | default: '#' }}" class="btn-link">{{ section.settings.cta_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand introduction",
+  "settings": [
+    {
+      "type": "text",
+      "id": "statement",
+      "label": "Statement",
+      "default": "A scent is a memory, carried forward."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Maqeed is a quiet study in fragrance — poured slow, worn close, and built to be discovered rather than announced.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Discover Maqeed"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "presets": [
+    { "name": "Brand introduction" }
+  ]
+}
+{% endschema %}
