@@ -918,6 +918,38 @@ section { padding: 128px 0; }
 }
 
 /* ==========================================================================
+   Brand story page
+   ========================================================================== */
+
+.brand-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.brand-story__media,
+.brand-story__content {
+  padding: 96px 32px;
+}
+.brand-story__content { padding-left: 0; max-width: 480px; }
+
+.brand-story__media img { display: block; width: 100%; height: auto; }
+.brand-story__media--empty { aspect-ratio: 4 / 5; background: var(--color-bg-soft); }
+
+.brand-story__heading { margin-bottom: 0.6em; }
+.brand-story__body { color: var(--color-body); }
+
+@media (max-width: 860px) {
+  .brand-story { grid-template-columns: 1fr; }
+  .brand-story__media { padding: 0; }
+  .brand-story__content { padding: 56px 20px 0; max-width: none; }
+}
+
+@media (max-width: 700px) {
+  .brand-story__content { padding: 48px 20px 0; }
+}
+
+/* ==========================================================================
    Product page
    ========================================================================== */
 

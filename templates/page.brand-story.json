@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "brand-story",
+      "settings": {
+        "heading": "Our Story",
+        "body": "<p>Maqeed began with a simple belief: that the truest luxury is quiet. We grew up between places — souks at dusk, coastal towns after rain, rooms where amber and oud lingered long after the people who wore them had gone — and it was there, in the space between memory and scent, that the idea for Maqeed took shape. Every fragrance we make is built the same way those memories were: slowly, honestly, and without excess, using rare naturals sourced with patience rather than urgency, so that what reaches the skin feels less like a product and more like a moment returned to you. We are not interested in announcing ourselves from across a room. We would rather be discovered — close, unhurried, and real — the way the best memories always are.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}
