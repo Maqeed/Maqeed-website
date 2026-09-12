@@ -30,5 +30,13 @@
       "logo_width": 140,
       "cart_type": "drawer"
     }
+  },
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "brand_link_1_url": "/pages/brand-story"
+      }
+    }
   }
 }
