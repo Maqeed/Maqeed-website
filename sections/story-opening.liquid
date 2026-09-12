@@ -1,0 +1,50 @@
+{%- comment -%}
+  Large editorial opening statement for a brand-story style page: one
+  big heading plus a short introductory paragraph, centered with
+  generous whitespace. Not meant to look like a standard "About Us"
+  header.
+{%- endcomment -%}
+<section class="story-opening">
+  <div class="wrap wrap--narrow story-opening__inner" data-reveal>
+    <h1 class="story-opening__heading font-heading">{{ section.settings.heading | newline_to_br }}</h1>
+    {%- if section.settings.body != blank -%}
+      <div class="story-opening__body rte">{{ section.settings.body }}</div>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link | default: '#' }}" class="btn-link">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Story opening",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A bridge between\nscents and memories."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Maqeed exists in the space where scent becomes memory — where a single note can return you to a place, a person, or a moment you thought you'd forgotten.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label (optional)"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    { "name": "Story opening" }
+  ]
+}
+{% endschema %}

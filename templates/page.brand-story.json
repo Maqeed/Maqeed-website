@@ -1,12 +1,54 @@
 {
   "sections": {
-    "main": {
-      "type": "brand-story",
+    "opening": {
+      "type": "story-opening",
       "settings": {
-        "heading": "Our Story",
-        "body": "<p>Maqeed began with a simple belief: that the truest luxury is quiet. We grew up between places — souks at dusk, coastal towns after rain, rooms where amber and oud lingered long after the people who wore them had gone — and it was there, in the space between memory and scent, that the idea for Maqeed took shape. Every fragrance we make is built the same way those memories were: slowly, honestly, and without excess, using rare naturals sourced with patience rather than urgency, so that what reaches the skin feels less like a product and more like a moment returned to you. We are not interested in announcing ourselves from across a room. We would rather be discovered — close, unhurried, and real — the way the best memories always are.</p>"
+        "heading": "A bridge between\nscents and memories.",
+        "body": "<p>Maqeed exists in the space where scent becomes memory — where a single note can return you to a place, a person, or a moment you thought you'd forgotten. We make fragrance as a way of holding onto what matters, quietly and without excess.</p>"
+      }
+    },
+    "image-1": {
+      "type": "story-image-block",
+      "settings": {
+        "height": "height-large",
+        "heading": "Where it began.",
+        "body": "<p>Every Maqeed fragrance begins somewhere real — a coastline at dusk, a market street thick with spice and smoke, the inside of a childhood home. We don't design scent from a brief. We start from a memory, and build outward until the feeling is whole again.</p>"
+      }
+    },
+    "idea": {
+      "type": "story-text",
+      "settings": {
+        "heading": "The idea behind Maqeed",
+        "body": "<p>Maqeed means \"the one who resides\" — a name chosen for what fragrance does best: it stays. Long after a room empties or a journey ends, scent remains, folded into memory. We build each Maqeed fragrance around this idea, treating perfume not as an accessory but as a vessel — something that carries a place, a feeling, or a person forward in time, quietly and completely.</p>",
+        "text_alignment": "center"
+      }
+    },
+    "split": {
+      "type": "editorial-story",
+      "settings": {
+        "layout": "split",
+        "image_position": "right",
+        "eyebrow": "the inspiration",
+        "heading": "A search for what stays.",
+        "body": "<p>Some scents fade the moment they're smelled. Others root themselves in you — in the crease of a scarf, the inside of a coat, the memory of a hand. Maqeed is built for the second kind: fragrance dense and low enough to hold on, so what lingers isn't just an impression, but a trace of somewhere you've actually been.</p>"
+      }
+    },
+    "process": {
+      "type": "story-text",
+      "settings": {
+        "heading": "A unique creative process",
+        "body": "<p>Every Maqeed fragrance begins as a single idea — a place, a feeling, a fragment of memory we want to hold in scent. From there we select rare naturals by hand, testing each against the idea rather than a trend, discarding anything that feels ornamental rather than true. The blending happens slowly, in small batches, refined over weeks until the composition earns its own quiet confidence. Nothing is bottled until it has rested — matured in the dark until the top notes settle and what remains is the fragrance's truest self. Only then does it become Maqeed.</p>",
+        "text_alignment": "center"
+      }
+    },
+    "closing": {
+      "type": "story-closing",
+      "settings": {
+        "heading": "A delight for the senses",
+        "body": "<p>To wear Maqeed is to experience more than scent. It's the warmth of a memory returning unannounced, the atmosphere of a room shifting because someone walked through it, the quiet confidence of being recognised without a word. We build our fragrances to be felt as much as smelled — an invitation to notice, to remember, and to return to what matters, again and again.</p>",
+        "height": "height-medium"
       }
     }
   },
-  "order": ["main"]
+  "order": ["opening", "image-1", "idea", "split", "process", "closing"]
 }

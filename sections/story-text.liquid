@@ -1,0 +1,46 @@
+{%- comment -%}
+  Reusable text-only editorial block: one heading plus one body of
+  copy, with an alignment option. Used for the more reflective,
+  text-focused moments of a storytelling page.
+{%- endcomment -%}
+<section class="story-text story-text--{{ section.settings.text_alignment }}">
+  <div class="wrap wrap--narrow story-text__inner" data-reveal>
+    <h2 class="font-heading">{{ section.settings.heading }}</h2>
+    {%- if section.settings.body != blank -%}
+      <div class="story-text__body rte">{{ section.settings.body }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Story text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The idea behind Maqeed"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Maqeed means \"the one who resides\" — a name chosen for what fragrance does best: it stays.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    { "name": "Story text" }
+  ]
+}
+{% endschema %}
