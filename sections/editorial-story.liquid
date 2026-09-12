@@ -3,7 +3,7 @@
   by side (image_position controls which side); "Overlay" runs the
   image full-bleed with the text set over a scrim, like the hero.
 {%- endcomment -%}
-<section class="editorial-story editorial-story--{{ section.settings.layout }} editorial-story--image-{{ section.settings.image_position }}">
+<section class="editorial-story editorial-story--{{ section.settings.layout }} editorial-story--image-{{ section.settings.image_position }}{% if section.settings.compact_spacing %} editorial-story--compact{% endif %}">
   {%- if section.settings.layout == 'overlay' -%}
     <div class="editorial-story__media editorial-story__media--full"
          {% if section.settings.image %}style="background-image:url('{{ section.settings.image | image_url: width: 2000 }}');"{% endif %}>
@@ -92,6 +92,12 @@
       "id": "body",
       "label": "Body",
       "default": "<p>A fragrance is never just a scent. It carries the trace of what made it — a resin, a coastline, an afternoon you didn't know you'd remember. We build ours to hold that trace, not mask it.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "compact_spacing",
+      "label": "Use compact spacing",
+      "default": false
     }
   ],
   "presets": [

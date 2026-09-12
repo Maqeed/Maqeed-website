@@ -30,7 +30,8 @@
         "image_position": "right",
         "eyebrow": "the inspiration",
         "heading": "A search for what stays.",
-        "body": "<p>Some scents fade the moment they're smelled. Others root themselves in you — in the crease of a scarf, the inside of a coat, the memory of a hand. Maqeed is built for the second kind: fragrance dense and low enough to hold on, so what lingers isn't just an impression, but a trace of somewhere you've actually been.</p>"
+        "body": "<p>Some scents fade the moment they're smelled. Others root themselves in you — in the crease of a scarf, the inside of a coat, the memory of a hand. Maqeed is built for the second kind: fragrance dense and low enough to hold on, so what lingers isn't just an impression, but a trace of somewhere you've actually been.</p>",
+        "compact_spacing": true
       }
     },
     "process": {
