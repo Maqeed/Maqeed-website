@@ -157,12 +157,12 @@ section { padding: 128px 0; }
 
 .site-header__wordmark {
   display: block;
-  height: 20px;
+  height: 23px;
   width: auto;
 }
 
 @media (max-width: 400px) {
-  .site-header__wordmark { height: 17px; }
+  .site-header__wordmark { height: 19px; }
 }
 
 .site-nav ul {
