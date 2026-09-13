@@ -43,8 +43,9 @@
     "editorial": {
       "type": "editorial-story",
       "settings": {
-        "layout": "split",
-        "image_position": "left",
+        "layout": "overlay",
+        "text_position": "bottom-left",
+        "overlay_opacity": 35,
         "eyebrow": "the philosophy",
         "heading": "The Art of the Trace",
         "body": "<p>A fragrance is never just a scent. It carries the trace of what made it — a resin, a coastline, an afternoon you didn't know you'd remember. We build ours to hold that trace, not mask it.</p>"
