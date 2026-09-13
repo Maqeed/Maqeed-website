@@ -1,15 +1,12 @@
 {%- comment -%}
   Editorial image + text section. "Split" lays the image and text side
   by side (image_position controls which side); "Overlay" runs the
-  image full-bleed, cinematic-banner style, with the text layered on
-  top over an optional scrim, like the hero.
+  image full-bleed with the text set over a scrim, like the hero.
 {%- endcomment -%}
 <section class="editorial-story editorial-story--{{ section.settings.layout }} editorial-story--image-{{ section.settings.image_position }}{% if section.settings.compact_spacing %} editorial-story--compact{% endif %}">
   {%- if section.settings.layout == 'overlay' -%}
-    <div class="editorial-story__media editorial-story__media--full editorial-story__media--text-{{ section.settings.text_position }}"
-         {% if section.settings.image %}
-           style="--editorial-bg-desktop: url('{{ section.settings.image | image_url: width: 2400 }}');{% if section.settings.image_mobile %} --editorial-bg-mobile: url('{{ section.settings.image_mobile | image_url: width: 1200 }}');{% endif %}"
-         {% endif %}>
+    <div class="editorial-story__media editorial-story__media--full"
+         {% if section.settings.image %}style="background-image:url('{{ section.settings.image | image_url: width: 2000 }}');"{% endif %}>
       {%- if section.settings.overlay_opacity > 0 -%}
         <div class="editorial-story__overlay" style="opacity: {{ section.settings.overlay_opacity | times: 1.0 | divided_by: 100 }};"></div>
       {%- endif -%}
@@ -19,9 +16,6 @@
         {%- endif -%}
         <h2 class="font-heading">{{ section.settings.heading }}</h2>
         <div class="editorial-story__body">{{ section.settings.body }}</div>
-        {%- if section.settings.button_label != blank -%}
-          <a href="{{ section.settings.button_link | default: '#' }}" class="btn-primary editorial-story__cta">{{ section.settings.button_label }}</a>
-        {%- endif -%}
       </div>
     </div>
   {%- else -%}
@@ -47,23 +41,9 @@
   "name": "Editorial story",
   "settings": [
     {
-      "type": "header",
-      "content": "Image"
-    },
-    {
       "type": "image_picker",
       "id": "image",
       "label": "Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Mobile image (optional, overlay layout)",
-      "info": "Falls back to the image above if left blank."
-    },
-    {
-      "type": "header",
-      "content": "Layout"
     },
     {
       "type": "select",
@@ -71,7 +51,7 @@
       "label": "Layout",
       "options": [
         { "value": "split", "label": "Image beside text" },
-        { "value": "overlay", "label": "Text over image (cinematic banner)" }
+        { "value": "overlay", "label": "Text over image" }
       ],
       "default": "split"
     },
@@ -86,18 +66,6 @@
       "default": "left"
     },
     {
-      "type": "select",
-      "id": "text_position",
-      "label": "Text position (overlay layout)",
-      "options": [
-        { "value": "bottom-left", "label": "Bottom left" },
-        { "value": "bottom-center", "label": "Bottom center" },
-        { "value": "center", "label": "Center" },
-        { "value": "top-left", "label": "Top left" }
-      ],
-      "default": "bottom-left"
-    },
-    {
       "type": "range",
       "id": "overlay_opacity",
       "label": "Overlay darkness (overlay layout)",
@@ -106,10 +74,6 @@
       "step": 5,
       "unit": "%",
       "default": 35
-    },
-    {
-      "type": "header",
-      "content": "Content"
     },
     {
       "type": "text",
@@ -130,19 +94,9 @@
       "default": "<p>A fragrance is never just a scent. It carries the trace of what made it — a resin, a coastline, an afternoon you didn't know you'd remember. We build ours to hold that trace, not mask it.</p>"
     },
     {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label (optional, overlay layout)"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
-    },
-    {
       "type": "checkbox",
       "id": "compact_spacing",
-      "label": "Use compact spacing (split layout)",
+      "label": "Use compact spacing",
       "default": false
     }
   ],

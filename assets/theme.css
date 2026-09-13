@@ -468,20 +468,14 @@ section { padding: 128px 0; }
 .editorial-story--overlay { padding: 0; }
 .editorial-story__media--full {
   position: relative;
-  overflow: hidden;
-  min-height: 88vh;
+  min-height: 80vh;
   display: flex;
-  flex-direction: column;
-  background-color: var(--color-bg-soft);
+  align-items: flex-end;
   background-size: cover;
   background-position: center;
-  background-image: var(--editorial-bg-desktop, none);
 }
 @media (max-width: 700px) {
-  .editorial-story__media--full {
-    min-height: 66vh;
-    background-image: var(--editorial-bg-mobile, var(--editorial-bg-desktop, none));
-  }
+  .editorial-story__media--full { min-height: 64vh; }
 }
 .editorial-story__overlay {
   position: absolute;
@@ -499,23 +493,6 @@ section { padding: 128px 0; }
 .editorial-story__content--overlay .eyebrow { color: var(--color-dark-text); opacity: 0.8; }
 .editorial-story__content--overlay h2 { color: var(--color-dark-text); }
 .editorial-story__content--overlay .editorial-story__body { color: var(--color-dark-text); opacity: 0.9; }
-.editorial-story__cta { margin-top: 1.6em; }
-
-.editorial-story__media--text-bottom-left { justify-content: flex-end; }
-.editorial-story__media--text-bottom-left .editorial-story__content--overlay { margin-left: 0; margin-right: auto; text-align: left; }
-
-.editorial-story__media--text-bottom-center { justify-content: flex-end; }
-.editorial-story__media--text-bottom-center .editorial-story__content--overlay { margin-left: auto; margin-right: auto; text-align: center; }
-
-.editorial-story__media--text-center { justify-content: center; }
-.editorial-story__media--text-center .editorial-story__content--overlay { margin-left: auto; margin-right: auto; text-align: center; }
-
-.editorial-story__media--text-top-left { justify-content: flex-start; }
-.editorial-story__media--text-top-left .editorial-story__content--overlay { margin-left: 0; margin-right: auto; text-align: left; }
-
-@media (max-width: 700px) {
-  .editorial-story__content--overlay { padding-top: 40px; padding-bottom: 40px; }
-}
 
 /* ==========================================================================
    Fragrance discovery
