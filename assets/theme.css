@@ -439,6 +439,14 @@ section { padding: 128px 0; }
 
 .editorial-story__body { color: var(--color-body); }
 
+.editorial-story--dark {
+  background: var(--color-dark);
+  color: var(--color-dark-text);
+}
+.editorial-story--dark .eyebrow { color: var(--color-dark-text); opacity: 0.8; }
+.editorial-story--dark h2 { color: var(--color-dark-text); }
+.editorial-story--dark .editorial-story__body { color: var(--color-dark-text); opacity: 0.9; }
+
 @media (max-width: 860px) {
   .editorial-story--split {
     grid-template-columns: 1fr;
