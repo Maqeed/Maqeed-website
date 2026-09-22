@@ -494,6 +494,11 @@ section { padding: 128px 0; }
 .editorial-story__content--overlay h2 { color: var(--color-dark-text); }
 .editorial-story__content--overlay .editorial-story__body { color: var(--color-dark-text); opacity: 0.9; }
 
+.editorial-story--dark { background: var(--color-dark); }
+.editorial-story--dark .eyebrow { color: var(--color-dark-text); opacity: 0.8; }
+.editorial-story--dark h2 { color: var(--color-dark-text); }
+.editorial-story--dark .editorial-story__body { color: var(--color-dark-text); opacity: 0.9; }
+
 /* ==========================================================================
    Fragrance discovery
    ========================================================================== */

@@ -3,7 +3,7 @@
   by side (image_position controls which side); "Overlay" runs the
   image full-bleed with the text set over a scrim, like the hero.
 {%- endcomment -%}
-<section class="editorial-story editorial-story--{{ section.settings.layout }} editorial-story--image-{{ section.settings.image_position }}{% if section.settings.compact_spacing %} editorial-story--compact{% endif %}">
+<section class="editorial-story editorial-story--{{ section.settings.layout }} editorial-story--image-{{ section.settings.image_position }}{% if section.settings.compact_spacing %} editorial-story--compact{% endif %}{% if section.settings.dark_background %} editorial-story--dark{% endif %}">
   {%- if section.settings.layout == 'overlay' -%}
     <div class="editorial-story__media editorial-story__media--full"
          {% if section.settings.image %}style="background-image:url('{{ section.settings.image | image_url: width: 2000 }}');"{% endif %}>
@@ -97,6 +97,13 @@
       "type": "checkbox",
       "id": "compact_spacing",
       "label": "Use compact spacing",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "dark_background",
+      "label": "Use footer's dark background",
+      "info": "Matches the site footer's background color instead of the page background.",
       "default": false
     }
   ],
