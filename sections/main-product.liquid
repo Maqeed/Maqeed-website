@@ -85,16 +85,35 @@
       {% endform %}
 
       {%- if section.settings.show_notes -%}
-        <div class="product__notes">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'note' -%}
-              <div class="product-note" {{ block.shopify_attributes }}>
-                <span class="product-note__label">{{ block.settings.label }}</span>
-                <span class="product-note__value">{{ block.settings.value }}</span>
+        {%- comment -%}
+          Notes are stored per product in metafields (custom.top_note,
+          custom.middle_note, custom.base_note) so each fragrance keeps its own values.
+        {%- endcomment -%}
+        {%- assign top_note = product.metafields.custom.top_note.value -%}
+        {%- assign middle_note = product.metafields.custom.middle_note.value -%}
+        {%- assign base_note = product.metafields.custom.base_note.value -%}
+        {%- if top_note != blank or middle_note != blank or base_note != blank -%}
+          <div class="product__notes">
+            {%- if top_note != blank -%}
+              <div class="product-note">
+                <span class="product-note__label">Top Note</span>
+                <span class="product-note__value">{{ top_note }}</span>
               </div>
             {%- endif -%}
-          {%- endfor -%}
-        </div>
+            {%- if middle_note != blank -%}
+              <div class="product-note">
+                <span class="product-note__label">Middle Note</span>
+                <span class="product-note__value">{{ middle_note }}</span>
+              </div>
+            {%- endif -%}
+            {%- if base_note != blank -%}
+              <div class="product-note">
+                <span class="product-note__label">Base Note</span>
+                <span class="product-note__value">{{ base_note }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
       {%- endif -%}
     </div>
   </div>
@@ -108,17 +127,8 @@
       "type": "checkbox",
       "id": "show_notes",
       "label": "Show fragrance notes list",
+      "info": "Notes come from each product's metafields: Top Note, Middle Note, Base Note.",
       "default": true
-    }
-  ],
-  "blocks": [
-    {
-      "type": "note",
-      "name": "Note",
-      "settings": [
-        { "type": "text", "id": "label", "label": "Label", "default": "top" },
-        { "type": "text", "id": "value", "label": "Value", "default": "bergamot, pink pepper" }
-      ]
     }
   ]
 }

@@ -4,22 +4,7 @@
       "type": "main-product",
       "settings": {
         "show_notes": true
-      },
-      "blocks": {
-        "top": {
-          "type": "note",
-          "settings": { "label": "top", "value": "bergamot, pink pepper" }
-        },
-        "heart": {
-          "type": "note",
-          "settings": { "label": "heart", "value": "amber resin, dry cedar" }
-        },
-        "base": {
-          "type": "note",
-          "settings": { "label": "base", "value": "tobacco leaf, warm musk" }
-        }
-      },
-      "block_order": ["top", "heart", "base"]
+      }
     }
   },
   "order": ["main"]
